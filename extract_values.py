@@ -81,7 +81,7 @@ def extract_values(
             # Escape values with special semantics in regular expressions
             parts[idx] = re.escape(p)
     # Build expanded pattern
-    expanded_pattern = ''.join(parts)
+    expanded_pattern = '^%s$' % ''.join(parts)
     try:
         # Attempt to extract values
         value_dict = re.match(expanded_pattern, string).groupdict()
