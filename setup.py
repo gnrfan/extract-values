@@ -29,7 +29,7 @@ if not root_dir:
 long_desc = open(root_dir + '/README.md').read()
 
 setup(
-    name='extract_values',
+    name='extract-values',
     version=version,
     url='https://github.com/gnrfan/extract-values',
     author='Antonio Ognio',
