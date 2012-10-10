@@ -32,6 +32,7 @@ setup(
     name='extract-values',
     version=version,
     url='https://github.com/gnrfan/extract-values',
+    download_url='https://github.com/gnrfan/extract-values/zipball/master',
     author='Antonio Ognio',
     author_email='antonio@ognio.com',
     license='BSD License',
