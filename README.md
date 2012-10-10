@@ -26,6 +26,10 @@ Optional parameters:
 * **strip_values** - When True calls strip() for each value removing whitespace   
 * **delimiters** - A sequence with only the opening and closing delimiters
 
+This module can be installed directly from Github using pip with the following command:
+
+    pip install git+ssh://git@github.com/gnrfan/extract-values.git
+
 This little project was inspired by a similar [Node.js](http://nodejs.org/) module created by sri-lankan developer [Lakshan Perera](http://laktek.com/) available [here](https://github.com/laktek/extract-values).
 
 (c) 2012 - Antonio Ognio <antonio@ognio.com> - Distributed under the BSD license - Made in Peru.
