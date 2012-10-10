@@ -36,7 +36,7 @@ setup(
     author_email='antonio@ognio.com',
     license='BSD License',
     py_modules=['extract_values'],
-    description='A Python module for extracting values out of a string'
+    description='A Python module for extracting values out of a string '
                 'using a simple pattern instead of a regular expression.',
     classifiers=classifiers,
     long_description=long_desc,
