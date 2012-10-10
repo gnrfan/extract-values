@@ -5,6 +5,7 @@ A Python module for extracting values out of a string using a simple pattern ins
 
 Examples:
 
+```python
     from extract_values import extract_values
 
     >>> extract_values('/2012/08/12/test.html', '/{year}/{month}/{day}/{title}.html')
@@ -21,6 +22,7 @@ Examples:
 
     >>> extract_values('The time is 4:35pm here at Lima, Peru', 'The time is :time here at :city', delimiters=[':', ''])
     {'time': '4:35pm', 'city': 'Lima, Peru'}
+```
 
 Optional parameters:
 
