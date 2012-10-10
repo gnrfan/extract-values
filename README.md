@@ -1,7 +1,7 @@
 Extract Values
 ==============
 
-A Python module for extracting values out of a string using a simple pattern of named group of characters delimited by a pair of opening and closing delimiters as a simpler alternative to using regular expressions.
+A Python module for extracting values out of a string using a simple pattern instead of a regular expression by defining groups of named characters using a pair of opening and closing delimiters.
 
 Examples:
 
@@ -18,6 +18,9 @@ Examples:
 
     >>> extract_values('Convert 1500 Grams to Kilograms', 'convert {quantity} {from_unit} to {to_unit}', lowercase=True)
     {'quantity': '1500', 'from_unit': 'grams', 'to_unit': 'kilograms' }]
+
+    >>> extract_values('The time is 4:35pm here at Lima, Peru', 'The time is :time here at :city', delimiters=[':', ''])
+    {'time': '4:35pm', 'city': 'Lima, Peru'}
 
 Optional parameters:
 
