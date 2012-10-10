@@ -11,6 +11,8 @@ E.g.
 """
 import re
 
+__version__ = '1.0'
+
 class error(Exception):
     pass
 
@@ -40,6 +42,30 @@ def extract_values(
     # Checking for just two delimiters
     if len(delimiters) != 2:
         raise error('delimiters must be a sequence with just two characters')
+    # Check if whitespace should be removed
+    whitespace_error_message = ''.join([
+        'whitespace must be a non-negative integer '
+        'with the minimal number of continous whitespace '
+        'to remove'
+    ])
+    if whitespace is not None:
+        # Make sure it's an integer
+        try:
+            whitespace = int(whitespace)
+        except TypeError:
+            raise error(whitespace_error_message)
+        # Make sure it's a non-negative integer
+        if whitespace < 0:
+            raise error(whitespace_error_message)
+        if whitespace is not None:
+            # Now remove whitespace
+            if whitespace == 0:
+                # Removing all whitespace from each value
+                string = re.sub('\s',  '', string) 
+            else:
+                # Removing only extra whitespace from each value
+                string = re.sub('(\s)\s{%d,}' % (whitespace-1), '\\1', string) 
+    # Helper regular expressions
     splitter = re.compile('(%s\w+%s)' % (delimiters[0], delimiters[1]))
     extracter = re.compile('%s(\w+)%s' % (delimiters[0], delimiters[1]))
     # Split pattern into parts including named groups
@@ -52,6 +78,7 @@ def extract_values(
             parts[idx] = '(?P<%s>.+)' % name
         # Part is something else
         else:
+            # Escape values with special semantics in regular expressions
             parts[idx] = re.escape(p)
     # Build expanded pattern
     expanded_pattern = ''.join(parts)
@@ -62,32 +89,6 @@ def extract_values(
         if strip_values:
             for name in value_dict:
                 value_dict[name] = value_dict[name].strip()
-        # Check if whitespace should be removed
-        whitespace_error_message = ''.join([
-            'whitespace must be a non-negative integer '
-            'with the minimal number of continous whitespace '
-            'to remove'
-        ])
-        if whitespace is not None:
-            # Make sure it's an integer
-            try:
-                whitespace = int(whitespace)
-            except TypeError:
-                raise error(whitespace_error_message)
-            # Make sure it's a non-negative integer
-            if whitespace < 0:
-                raise error(whitespace_error_message)
-            # Now remove whitespace
-            if whitespace == 0:
-                # Removing all whitespace from each value
-                for name in value_dict:
-                    value_dict[name] = re.sub('\s',  '', value_dict[name]) 
-            else:
-                # Removing only extra whitespace from each value
-                for name in value_dict:
-                    value_dict[name] = re.sub(
-                        '(\s)\s{%d,}' % (whitespace-1), '\\1', value_dict[name]
-                    ) 
         # Finally, return values
         return value_dict
     except re.error, e:
