@@ -29,7 +29,15 @@ Optional parameters:
 * **strip_values** - When True calls strip() for each value removing whitespace   
 * **delimiters** - A sequence with only the opening and closing delimiters
 
-This module can be installed directly from Github using pip with the following command:
+In order to install this package from [PyPi](http://pypi.python.org) you can run any of these commands:
+
+    easy_install extract-values
+
+or
+
+    pip install extract-values
+
+This library can also be installed directly from Github with the following command:
 
     pip install git+ssh://git@github.com/gnrfan/extract-values.git
 
